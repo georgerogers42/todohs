@@ -39,7 +39,7 @@ withTodoHS conf logger f = do
 #else
     s <- staticDevel Settings.staticDir
 #endif
-    dbconf <- withYamlEnvironment "config/postgres.yml" (appEnv conf)
+    dbconf <- withYamlEnvironment "config/database.yml" (appEnv conf)
             $ either error return . Database.Persist.Base.loadConfig
     Database.Persist.Base.withPool (dbconf :: Settings.PersistConfig) $ \p -> do
         Database.Persist.Base.runPool dbconf (runMigration migrateAll) p
