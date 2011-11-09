@@ -1,0 +1,26 @@
+<form method="POST" action=@{RootR}
+  Task
+  <input name="task"
+  <br> 
+  Category
+  <input name="category"
+  <input type="submit"
+<form method="POST" action=@{MkCategoryR}
+  Create Category
+  <input name="name"
+  <input type="submit"
+$forall j <- categories
+  <h2> #{categoryName $ snd $ fst $ j}
+  <form method="POST" action=@{CategoryR $ fst $ fst j}
+    <input type="submit"
+  <ul>
+    $forall i <- snd j
+      <li>#{taskName $ snd i}
+      <form method="POST" action=@{TodoR $ fst i}
+        $if taskDone $ snd i
+          <input type="checkbox" checked name="done"
+        $else
+          <input type="checkbox" name="done"
+        <input type="submit"
+      <form method="POST" action=@{DelTodoR $ fst i}
+        <input type="submit"
