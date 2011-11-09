@@ -19,9 +19,6 @@ import Database.Persist.Postgresql (PostgresConf)
 import Yesod.Default.Config
 import qualified Yesod.Default.Util
 import Data.Text (Text)
-#ifdef PRODUCTION
-import qualified Web.Heroku as Heroku
-#endif
 -- | Which Persistent backend this site is using.
 type PersistConfig = PostgresConf
 
